@@ -8,7 +8,7 @@ Follow Steps of the [Pinterest iOS SDK Getting Started instructions](https://dev
   * Add an URL Type to your iOS app (pin[ClientID]).
 
 Add a `PinterestShareActivity` to your `UIActivityViewController`.
-It accepts a string and either an image or a URL. You can also create and customize your own share builder.
+It accepts an image URL and either a description String or a source URL.
 
 ``` objective-c
 #import <PinterestShareActivity/PinterestShareActivity.h>
@@ -41,7 +41,7 @@ Setting `activityPopoverViewController` or `activitySuperViewController` allows 
 
 ## Notes
 
-You can only share on device because you need Pinterest app installed on the phone to share.
+You can only share on device because you need Pinterest app installed.
 
 ## License
 
