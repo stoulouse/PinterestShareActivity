@@ -41,7 +41,8 @@ Setting `activityPopoverViewController` or `activitySuperViewController` allows 
 
 ## Notes
 
-You can only share on device because you need Pinterest app installed.
+  * You can only share on device because you need Pinterest app installed.
+  * NSURL order is important, first NSURL must be the image URL.
 
 ## License
 
