@@ -1,6 +1,6 @@
 //
 //  PinterestShareActivity.h
-//  GooglePlusShareActivity
+//  PinterestShareActivity
 //
 //  Created by Samuel Toulouse on 10/6/13.
 //  Copyright (c) 2013 Samuel Toulouse. All rights reserved.
@@ -27,7 +27,7 @@ extern NSString *const PinterestShareActivityType;
 @property (strong, nonatomic) NSString* description;
 
 // Set one of these to dismiss the popover view controller (iPad) or presented view
-// controller (iPhone) before initiating the Google+ sharing
+// controller (iPhone) before initiating the Pinterest sharing
 @property (weak, nonatomic) UIPopoverController* activityPopoverViewController;
 @property (weak, nonatomic) UIViewController* activitySuperViewController;
 

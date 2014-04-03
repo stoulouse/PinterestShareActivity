@@ -57,19 +57,7 @@
     if(!self.activityPopoverController) {
         
         // set up items to share, in this case some text and an image
-        NSArray* activityItems = @[ @"Hello Pinterest!", @"", @"" ];
-        
-        // URL sharing works as well. But you cannot share an image and a URL at the same time :(
-        //NSArray* activityItems = @[ @"Hello Pinterest!", [NSURL URLWithString:@"https://github.com/stoulouse/PinterestShareActivity"] ];
-        
-        // If a file path URL is passed, it must point to an image. It is be attached as if you used a UIImage directly.
-        //NSArray* activityItems = @[ @"Hello Pinterest!", [[NSBundle mainBundle] URLForResource:@"example" withExtension:@"jpg"] ];
-        
-        // You can also set up a GPPShareBuilder on your own. All other items will be ignored
-        //id<GPPNativeShareBuilder> shareBuilder = (id<GPPNativeShareBuilder>)[GPPShare sharedInstance].nativeShareDialog;
-        //[shareBuilder setPrefillText:@"Hello Pinterest!"];
-        //[shareBuilder setURLToShare: [NSURL URLWithString:@"https://github.com/stoulouse/PinterestShareActivity"]];
-        //NSArray* activityItems = @[ @"Does not appear", shareBuilder ];
+        NSArray* activityItems = @[ @"Hello Pinterest!", [NSURL URLWithString:@"https://raw.githubusercontent.com/stoulouse/PinterestShareActivity/master/PinterestShareActivityExample/example.jpg"], [NSURL URLWithString:@"https://github.com/stoulouse/PinterestShareActivity/"] ];
         
         // set up and present activity view controller
         PinterestShareActivity* pinterestShareActivity = [[PinterestShareActivity alloc] init];

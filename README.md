@@ -5,7 +5,7 @@ This library provides a UIActivity subclass for Pinterest sharing. It uses the n
 Follow Steps of the [Pinterest iOS SDK Getting Started instructions](https://developers.pinterest.com/ios/) to
 
   * Register for a Client ID
-  * Add an URL Type to your iOS app.
+  * Add an URL Type to your iOS app (pin[ClientID]).
 
 Add a `PinterestShareActivity` to your `UIActivityViewController`.
 It accepts a string and either an image or a URL. You can also create and customize your own share builder.
@@ -14,11 +14,10 @@ It accepts a string and either an image or a URL. You can also create and custom
 #import <PinterestShareActivity/PinterestShareActivity.h>
 
 - (void)actionButtonClicked:(UIBarButtonItem*)sender {
+	[PinterestShareActivity setSharedClientID:@"{YourClientID}"];
+
     // set up items to share, in this case some text and an image
-    NSArray* activityItems = @[ @"Hello Pinterest!", [UIImage imageNamed:@"example.jpg"] ];
-    
-    // URL sharing works as well. But you cannot share an image and a URL at the same time :(
-    //NSArray* activityItems = @[ @"Hello Pinterest!", [NSURL URLWithString:@"https://github.com/stoulouse/PinterestShareActivity"] ];
+    NSArray* activityItems = @[ @"Hello Pinterest!", [NSURL URLWithString:@"https://raw.githubusercontent.com/stoulouse/PinterestShareActivity/master/PinterestShareActivityExample/example.jpg"], [NSURL URLWithString:@"https://github.com/stoulouse/PinterestShareActivity/"] ];
     
     // set up and present activity view controller
     PinterestShareActivity* piShareActivity = [[PinterestShareActivity alloc] init];
@@ -39,6 +38,10 @@ It accepts a string and either an image or a URL. You can also create and custom
 ```
 
 Setting `activityPopoverViewController` or `activitySuperViewController` allows you to dismiss the popover controller or modal view controller before the Pinterest share view is shown.
+
+## Notes
+
+You can only share on device because you need Pinterest app installed on the phone to share.
 
 ## License
 

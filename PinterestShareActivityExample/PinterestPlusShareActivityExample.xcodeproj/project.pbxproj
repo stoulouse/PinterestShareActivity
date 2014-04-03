@@ -10,6 +10,10 @@
 		01FCC8BB18ED61460047268F /* Pinterest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FCC8B818ED61460047268F /* Pinterest.framework */; };
 		01FCC8BC18ED61460047268F /* PinterestSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01FCC8BA18ED61460047268F /* PinterestSDKResources.bundle */; };
 		01FCC8BD18ED62410047268F /* PinterestShareActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD264B5180150DC00652133 /* PinterestShareActivity.m */; };
+		01FCC8BE18ED65E40047268F /* PinterestShareActivity@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ACFA2F3180184E500CBE716 /* PinterestShareActivity@2x~iphone.png */; };
+		01FCC8BF18ED65E40047268F /* PinterestShareActivity~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ACFA2F4180184E500CBE716 /* PinterestShareActivity~iphone.png */; };
+		01FCC8C018ED65E40047268F /* PinterestShareActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD264B6180152A100652133 /* PinterestShareActivity.png */; };
+		01FCC8C118ED65E40047268F /* PinterestShareActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD264B7180152A100652133 /* PinterestShareActivity@2x.png */; };
 		8ACFA2F61801868000CBE716 /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8ACFA2F51801868000CBE716 /* example.jpg */; };
 		8AD26477180143AC00652133 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD26476180143AC00652133 /* Foundation.framework */; };
 		8AD26479180143AC00652133 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD26478180143AC00652133 /* CoreGraphics.framework */; };
@@ -200,10 +204,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FCC8C118ED65E40047268F /* PinterestShareActivity@2x.png in Resources */,
 				8ACFA2F61801868000CBE716 /* example.jpg in Resources */,
 				8AD26492180143AC00652133 /* Images.xcassets in Resources */,
+				01FCC8C018ED65E40047268F /* PinterestShareActivity.png in Resources */,
+				01FCC8BE18ED65E40047268F /* PinterestShareActivity@2x~iphone.png in Resources */,
 				8AD26481180143AC00652133 /* InfoPlist.strings in Resources */,
 				01FCC8BC18ED61460047268F /* PinterestSDKResources.bundle in Resources */,
+				01FCC8BF18ED65E40047268F /* PinterestShareActivity~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
