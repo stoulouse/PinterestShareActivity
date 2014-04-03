@@ -22,6 +22,8 @@ extern NSString *const PinterestShareActivityType;
 
 @property (strong, nonatomic) Pinterest* pinterest;
 
+@property (strong, nonatomic) NSString* clientID;
+
 @property (strong, nonatomic) NSURL* imageURL;
 @property (strong, nonatomic) NSURL* sourceURL;
 @property (strong, nonatomic) NSString* description;
@@ -35,5 +37,7 @@ extern NSString *const PinterestShareActivityType;
 
 +(void)setSharedClientID:(NSString*)clientID;
 +(NSString*)sharedClientID;
+
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

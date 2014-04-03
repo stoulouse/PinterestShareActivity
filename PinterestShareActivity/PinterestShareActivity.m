@@ -30,6 +30,7 @@ static NSString * PinterestShareClientID = @"";
 - (instancetype)init
 {
     if (self = [super init]) {
+		self.clientID = PinterestShareClientID;
 		self.pinterest = [[Pinterest alloc] initWithClientId: PinterestShareClientID];
     }
     return self;
@@ -38,6 +39,7 @@ static NSString * PinterestShareClientID = @"";
 - (instancetype)initWithPinterestClientID:(NSString*)clientID
 {
     if (self = [super init]) {
+		self.clientID = clientID;
 		self.pinterest = [[Pinterest alloc] initWithClientId:clientID];
     }
     return self;
@@ -142,8 +144,12 @@ static NSString * PinterestShareClientID = @"";
     self.activitySuperViewController = nil;
 }
 
+static PinterestShareActivity* currentPinterestShareActivity = nil;
+
 - (void)performActivityInternal
 {
+	currentPinterestShareActivity = self;
+	
 	[self.pinterest createPinWithImageURL:self.imageURL sourceURL: self.sourceURL description:self.description];
 }
 
@@ -152,5 +158,18 @@ static NSString * PinterestShareClientID = @"";
     [super activityDidFinish:completed];
 }
 
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	if (currentPinterestShareActivity) {
+		NSString* pinterestURL = [[NSURL URLWithString:[NSString stringWithFormat:@"pin%@://", currentPinterestShareActivity.clientID]] absoluteString];
+		NSString* urlString = [url absoluteString];
+		if ([urlString rangeOfString:pinterestURL].length != 0) {
+			BOOL success = [urlString rangeOfString:@"pin_success=1"].length != 0;
+			[currentPinterestShareActivity activityDidFinish:success];
+			currentPinterestShareActivity = nil;
+			return YES;
+		}
+	}
+	return NO;
+}
 
 @end

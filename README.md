@@ -37,6 +37,16 @@ It accepts an image URL and either a description String or a source URL.
 }
 ```
 
+``` objective-c
+#import <PinterestShareActivity/PinterestShareActivity.h>
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	BOOL result = [PinterestShareActivity handleURL:url sourceApplication:sourceApplication annotation:annotation];
+	return result;
+}
+```
+
+
 Setting `activityPopoverViewController` or `activitySuperViewController` allows you to dismiss the popover controller or modal view controller before the Pinterest share view is shown.
 
 ## Notes
