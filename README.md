@@ -38,7 +38,7 @@ It accepts a string and either an image or a URL. You can also create and custom
 }
 ```
 
-Setting `activityPopoverViewController` or `activitySuperViewController` allows you to dismiss the popover controller or modal view controller before the Google+ share view is shown.
+Setting `activityPopoverViewController` or `activitySuperViewController` allows you to dismiss the popover controller or modal view controller before the Pinterest share view is shown.
 
 ## License
 
