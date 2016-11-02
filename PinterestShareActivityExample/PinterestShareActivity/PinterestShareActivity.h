@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Pinterest/Pinterest.h>
+#import <PinterestSDK.h>
 
 extern NSString *const PinterestShareActivityType;
 
@@ -19,8 +19,6 @@ extern NSString *const PinterestShareActivityType;
 //   - NSURL instances set the site source URL to be shared. Once image URL set, any instance overrides the previous one.
 //   - NSString instances set the pin description to be shared. Any instance overrides the previous one.
 @interface PinterestShareActivity : UIActivity
-
-@property (strong, nonatomic) Pinterest* pinterest;
 
 @property (strong, nonatomic) NSString* clientID;
 

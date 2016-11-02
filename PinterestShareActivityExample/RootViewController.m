@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-#import "../PinterestShareActivity/PinterestShareActivity.h"
+#import "PinterestShareActivity.h"
 
 
 @interface RootViewController ()
