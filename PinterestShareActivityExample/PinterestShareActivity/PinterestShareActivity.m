@@ -12,6 +12,7 @@
 NSString *const PinterestShareActivityType = @"net.samlepirate.ios.PinterestShareActivity";
 
 
+
 @interface PinterestShareActivity ()
 
 @end
@@ -20,6 +21,7 @@ NSString *const PinterestShareActivityType = @"net.samlepirate.ios.PinterestShar
 @implementation PinterestShareActivity
 
 static NSString * PinterestShareClientID = @"";
+static PinterestShareActivity* currentPinterestShareActivity = nil;
 
 + (void)setSharedClientID:(NSString*)clientID {
     [PDKClient configureSharedInstanceWithAppId:@"4865444153764361750"];
@@ -59,24 +61,20 @@ static NSString * PinterestShareClientID = @"";
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
-+ (UIActivityCategory)activityCategory
-{
++ (UIActivityCategory)activityCategory {
     return UIActivityCategoryShare;
 }
 #endif
 
-- (NSString *)activityTitle
-{
+- (NSString *)activityTitle {
     return @"Pinterest";
 }
 
-- (UIImage *)activityImage
-{
+- (UIImage *)activityImage {
     return [UIImage imageNamed:@"PinterestShareActivity"];
 }
 
-- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
-{
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
 //	if ([self.pinterest canPinWithSDK]) {
 		for (id item in activityItems) {
 			if ([item isKindOfClass:[NSURL class]]) {
@@ -89,15 +87,14 @@ static NSString * PinterestShareClientID = @"";
     return NO;
 }
 
-- (void)prepareWithActivityItems:(NSArray *)activityItems
-{
+- (void)prepareWithActivityItems:(NSArray *)activityItems {
 	self.imageURL = nil;
 	self.sourceURL = nil;
-	self.description = nil;
+	self.descriptionText = nil;
 	
     for (id item in activityItems) {
         if ([item isKindOfClass:[NSString class]]) {
-            self.description = item;
+            self.descriptionText = item;
         } else if ([item isKindOfClass:[NSURL class]]) {
 			NSURL* url = item;
 			if (!url.isFileURL) {
@@ -144,10 +141,7 @@ static NSString * PinterestShareClientID = @"";
     self.activitySuperViewController = nil;
 }
 
-static PinterestShareActivity* currentPinterestShareActivity = nil;
-
-- (void)performActivityInternal
-{
+- (void)performActivityInternal {
 	currentPinterestShareActivity = self;
 	
     [PDKPin pinWithImageURL:[NSURL URLWithString:@"https://about.pinterest.com/sites/about/files/logo.jpg"] link:[NSURL URLWithString:@"https://www.pinterest.com"] suggestedBoardName:@"Test" note:@"" withSuccess:^{
@@ -157,8 +151,7 @@ static PinterestShareActivity* currentPinterestShareActivity = nil;
     }];
 }
 
-- (void)activityDidFinish:(BOOL)completed
-{
+- (void)activityDidFinish:(BOOL)completed {
     [super activityDidFinish:completed];
 }
 

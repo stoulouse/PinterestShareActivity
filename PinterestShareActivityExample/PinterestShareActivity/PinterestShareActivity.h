@@ -24,7 +24,7 @@ extern NSString *const PinterestShareActivityType;
 
 @property (strong, nonatomic) NSURL* imageURL;
 @property (strong, nonatomic) NSURL* sourceURL;
-@property (strong, nonatomic) NSString* description;
+@property (strong, nonatomic) NSString* descriptionText;
 
 // Set one of these to dismiss the popover view controller (iPad) or presented view
 // controller (iPhone) before initiating the Pinterest sharing
