@@ -7,8 +7,10 @@
 //
 
 #import "PinterestShareActivity.h"
+#import "PDKPin.h"
 
 NSString *const PinterestShareActivityType = @"net.samlepirate.ios.PinterestShareActivity";
+
 
 
 @interface PinterestShareActivity ()
@@ -19,8 +21,10 @@ NSString *const PinterestShareActivityType = @"net.samlepirate.ios.PinterestShar
 @implementation PinterestShareActivity
 
 static NSString * PinterestShareClientID = @"";
+static PinterestShareActivity* currentPinterestShareActivity = nil;
 
-+(void)setSharedClientID:(NSString*)clientID {
++ (void)setSharedClientID:(NSString*)clientID {
+    [PDKClient configureSharedInstanceWithAppId:@"4865444153764361750"];
 	PinterestShareClientID = clientID;
 }
 +(NSString*)sharedClientID {
@@ -31,7 +35,6 @@ static NSString * PinterestShareClientID = @"";
 {
     if (self = [super init]) {
 		self.clientID = PinterestShareClientID;
-		self.pinterest = [[Pinterest alloc] initWithClientId: PinterestShareClientID];
     }
     return self;
 }
@@ -39,8 +42,8 @@ static NSString * PinterestShareClientID = @"";
 - (instancetype)initWithPinterestClientID:(NSString*)clientID
 {
     if (self = [super init]) {
-		self.clientID = clientID;
-		self.pinterest = [[Pinterest alloc] initWithClientId:clientID];
+        self.clientID = clientID;
+        [PDKClient configureSharedInstanceWithAppId:@"4865444153764361750"];
     }
     return self;
 }
@@ -58,25 +61,21 @@ static NSString * PinterestShareClientID = @"";
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
-+ (UIActivityCategory)activityCategory
-{
++ (UIActivityCategory)activityCategory {
     return UIActivityCategoryShare;
 }
 #endif
 
-- (NSString *)activityTitle
-{
+- (NSString *)activityTitle {
     return @"Pinterest";
 }
 
-- (UIImage *)activityImage
-{
+- (UIImage *)activityImage {
     return [UIImage imageNamed:@"PinterestShareActivity"];
 }
 
-- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
-{
-	if ([self.pinterest canPinWithSDK]) {
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+//	if ([self.pinterest canPinWithSDK]) {
 		for (id item in activityItems) {
 			if ([item isKindOfClass:[NSURL class]]) {
 				NSURL* url = item;
@@ -84,19 +83,18 @@ static NSString * PinterestShareClientID = @"";
 					return YES;
 			}
 		}
-	}
+//	}
     return NO;
 }
 
-- (void)prepareWithActivityItems:(NSArray *)activityItems
-{
+- (void)prepareWithActivityItems:(NSArray *)activityItems {
 	self.imageURL = nil;
 	self.sourceURL = nil;
-	self.description = nil;
+	self.descriptionText = nil;
 	
     for (id item in activityItems) {
         if ([item isKindOfClass:[NSString class]]) {
-            self.description = item;
+            self.descriptionText = item;
         } else if ([item isKindOfClass:[NSURL class]]) {
 			NSURL* url = item;
 			if (!url.isFileURL) {
@@ -110,8 +108,7 @@ static NSString * PinterestShareClientID = @"";
     }
 }
 
-- (void)performActivity
-{
+- (void)performActivity {
     if(self.imageURL) {
         // Dismiss activity view controller
         if (self.activityPopoverViewController) {
@@ -144,17 +141,17 @@ static NSString * PinterestShareClientID = @"";
     self.activitySuperViewController = nil;
 }
 
-static PinterestShareActivity* currentPinterestShareActivity = nil;
-
-- (void)performActivityInternal
-{
+- (void)performActivityInternal {
 	currentPinterestShareActivity = self;
 	
-	[self.pinterest createPinWithImageURL:self.imageURL sourceURL: self.sourceURL description:self.description];
+    [PDKPin pinWithImageURL:[NSURL URLWithString:@"https://about.pinterest.com/sites/about/files/logo.jpg"] link:[NSURL URLWithString:@"https://www.pinterest.com"] suggestedBoardName:@"Test" note:@"" withSuccess:^{
+        
+    } andFailure:^(NSError *error) {
+        
+    }];
 }
 
-- (void)activityDidFinish:(BOOL)completed
-{
+- (void)activityDidFinish:(BOOL)completed {
     [super activityDidFinish:completed];
 }
 

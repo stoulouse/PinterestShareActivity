@@ -10,7 +10,7 @@
 
 #import "RootViewController.h"
 
-#import "../PinterestShareActivity/PinterestShareActivity.h"
+#import "PinterestShareActivity.h"
 
 
 @implementation AppDelegate
@@ -29,6 +29,14 @@
     // show UI
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [[PDKClient sharedInstance] handleCallbackURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+    return [[PDKClient sharedInstance] handleCallbackURL:url];
 }
 
 @end

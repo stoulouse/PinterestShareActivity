@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Pinterest/Pinterest.h>
+#import <PinterestSDK.h>
 
 extern NSString *const PinterestShareActivityType;
 
@@ -20,13 +20,11 @@ extern NSString *const PinterestShareActivityType;
 //   - NSString instances set the pin description to be shared. Any instance overrides the previous one.
 @interface PinterestShareActivity : UIActivity
 
-@property (strong, nonatomic) Pinterest* pinterest;
-
 @property (strong, nonatomic) NSString* clientID;
 
 @property (strong, nonatomic) NSURL* imageURL;
 @property (strong, nonatomic) NSURL* sourceURL;
-@property (strong, nonatomic) NSString* description;
+@property (strong, nonatomic) NSString* descriptionText;
 
 // Set one of these to dismiss the popover view controller (iPad) or presented view
 // controller (iPhone) before initiating the Pinterest sharing
